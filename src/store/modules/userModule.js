@@ -22,12 +22,13 @@ export const userModule = {
     }
   },
   actions: {
-    async initFetchLogin({ commit }, loginParams) {
+    async initFetchLogin({ commit }, { loginParams, callback }) {
       try {
         commit('setIsLoading', true);
         const loginResponse = await fetchLogin({ loginParams });
         if (loginResponse.status === 'error') throw new Error(loginResponse.message);
         commit('setIsLogined', loginResponse.isLogined);
+        callback();
       } catch (error) {
         commit('setIsLogined', false);
         commit('setError', error.message)

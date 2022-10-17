@@ -35,16 +35,21 @@ export default {
     ...mapActions({
       initFetchLogin: 'initFetchLogin',
     }),
-    handleLoginChange(e) {
-      this.email = e;
+    handleLoginChange(value) {
+      this.email = value;
     },
-    handlePasswordChange(e) {
-      this.password = e;
+    handlePasswordChange(value) {
+      this.password = value;
     },
-    handleSubmit(e) {
-      console.log('isLogined:', this.isLogined);
-      console.log('submit:', e);
-      this.initFetchLogin({ email: this.email, password: this.password })
+    handleSubmit() {
+      // fetch login and password and in case of success redirect to hotels page
+      this.initFetchLogin({
+        loginParams: {
+          email: this.email,
+          password: this.password
+        },
+        callback: () => this.$router.push({ name: 'hotels' })
+      })
     }
   }
 }

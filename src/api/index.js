@@ -36,7 +36,6 @@ export const fetchImages = async ({ searchParam }) => {
 
 // eslint-disable-next-line no-unused-vars
 export const fetchLogin = async ({ loginParams }) => {
-  console.log('fetchLogin:',);
   let responseData;
 
   await new Promise((resolve, reject) => {

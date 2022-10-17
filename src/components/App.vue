@@ -6,6 +6,12 @@
     <collapse-button :isActive="isActive" :handleClick="handleClick" />
   </nav>
   <router-view />
+  <modal-window :isOpen="userLoginisLoading">
+    <loading-spinner></loading-spinner>
+  </modal-window>
+  <modal-window :isOpen="userLoginError" type="error" @buttonClick="setUserLoginError(null)">
+    <data-placeholder>Не&nbsp; удалось загрузить данные. Попробуйте снова</data-placeholder>
+  </modal-window>
 </template>
 
 <script>
@@ -24,7 +30,9 @@ export default {
   computed: {
     ...mapState({
       isLogined: (state) => state.user.isLogined,
-    })
+      userLoginError: (state) => state.user.fetchStatus.error,
+      userLoginisLoading: (state) => state.user.fetchStatus.isLoading,
+    }),
   },
   beforeMount() {
     // достать из localStorage данные при их наличии
@@ -34,9 +42,21 @@ export default {
       this.$router.push({ name: 'hotels' });
     }
   },
+  watch: {
+    isLogined(newValue) {
+      console.log('isLogined:', newValue);
+    },
+    userLoginError(newValue) {
+      console.log('userLoginError:', newValue);
+    },
+    userLoginisLoading(newValue) {
+      console.log('userLoginisLoading:', newValue);
+    }
+  },
   methods: {
     ...mapMutations({
       setIsLogined: 'setIsLogined',
+      setUserLoginError: 'setError',
     }),
     handleClick() {
       console.log('1')
