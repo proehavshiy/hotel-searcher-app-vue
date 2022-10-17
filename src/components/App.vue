@@ -42,6 +42,11 @@ export default {
       this.$router.push({ name: 'hotels' });
     }
   },
+  // mounted() {
+  //   if (this.isLogined) {
+  //     this.$route.push({ name: 'hotels' });
+  //   }
+  // },
   watch: {
     isLogined(newValue) {
       console.log('isLogined:', newValue);

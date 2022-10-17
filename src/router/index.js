@@ -1,18 +1,21 @@
-import unpackLocalStorage from '@/utils/unpackLocalStorage';
 import { createRouter, createWebHistory } from 'vue-router'
+import routeProtectionRules from './routeProtectionRules';
 
 const routes = [
   {
     path: '/',
     name: 'login',
     component: () => import('../views/LoginView.vue'),
+    meta: {
+      requireAuth: false,
+    }
   },
   {
     path: '/hotels',
     name: 'hotels',
     component: () => import('../views/HotelsView.vue'),
     meta: {
-      isLogined: true,
+      requireAuth: true,
     }
   },
   {
@@ -27,19 +30,7 @@ const router = createRouter({
   routes
 })
 
-// защита роута
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.isLogined)) {
-    const [isExist, { isLogined }] = unpackLocalStorage('hotels-app');
-    if (isExist && isLogined) {
-      next(true);
-    } else {
-      // если user is not logined, то редирект на авторизацию
-      next({ name: 'login' });
-    }
-  } else {
-    next(true);
-  }
-});
+// routes protection
+router.beforeEach(routeProtectionRules);
 
 export default router
