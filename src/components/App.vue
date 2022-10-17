@@ -9,6 +9,9 @@
 </template>
 
 <script>
+import unpackLocalStorage from '@/utils/unpackLocalStorage';
+import { mapMutations, mapState } from 'vuex';
+
 export default {
   name: 'App',
   components: {},
@@ -18,7 +21,23 @@ export default {
       isActive: false,
     }
   },
+  computed: {
+    ...mapState({
+      isLogined: (state) => state.user.isLogined,
+    })
+  },
+  beforeMount() {
+    // достать из localStorage данные при их наличии
+    const [isExist, { isLogined }] = unpackLocalStorage('hotels-app');
+    if (isExist) {
+      this.setIsLogined(isLogined);
+      this.$router.push({ name: 'hotels' });
+    }
+  },
   methods: {
+    ...mapMutations({
+      setIsLogined: 'setIsLogined',
+    }),
     handleClick() {
       console.log('1')
       this.isActive = !this.isActive

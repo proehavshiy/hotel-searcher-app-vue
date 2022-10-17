@@ -35,10 +35,6 @@ export default {
       type: String,
       required: true,
     },
-    onChange: {
-      type: Function,
-      required: true,
-    },
     onBlur: {
       type: Function,
     },

@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
+
 export default {
   name: 'login-form',
   components: {},
@@ -24,19 +26,25 @@ export default {
       password: '',
     }
   },
+  computed: {
+    ...mapState({
+      isLogined: 'isLogined'
+    })
+  },
   methods: {
+    ...mapActions({
+      initFetchLogin: 'initFetchLogin',
+    }),
     handleLoginChange(e) {
-      console.log('3:', e);
-      console.log('login:', e);
       this.email = e;
     },
     handlePasswordChange(e) {
-      console.log('3:', e);
-      console.log('password:', e);
       this.password = e;
     },
     handleSubmit(e) {
+      console.log('isLogined:', this.isLogined);
       console.log('submit:', e);
+      this.initFetchLogin({ email: this.email, password: this.password })
     }
   }
 }
