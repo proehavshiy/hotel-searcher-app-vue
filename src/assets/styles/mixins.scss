@@ -1,0 +1,101 @@
+@mixin contentBlockPreset {
+  background: $contentBlockBg;
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04),
+    0px 6px 10px rgba(0, 0, 0, 0.02);
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+@mixin extraTextHidden {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin standartTransition($duration) {
+  transition: all #{$duration+s} ease;
+}
+
+@mixin contentBlock() {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: $colBg;
+  box-shadow: 0px 4px 33px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+}
+
+// @include adaptive-font(40, 24)
+@mixin adaptive-font($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize; // разница между требуемыми макс размером и минимальным шрифта
+  $addMobSize: $addSize +$addSize * 0.7; // поправочный коэффициент для мобилок
+  $maxWidth: 1440;
+
+  @media (max-width: 767px) {
+    // для мобилок надо скорректировать, тк если не скорректировать, то за точку отсчета будет браться 0 px, а нам нужно 320px
+    font-size: calc(#{$mobSize+px} + #{$addMobSize} * ((100vw - 320px) / #{$maxWidth}));
+  }
+
+  @media (min-width: 767px) {
+    font-size: calc(#{$mobSize+px} + #{$addSize} * (100vw / #{$maxWidth}));
+  }
+}
+
+@mixin h1 {
+  font-weight: 500;
+  @include adaptive-font(24, 18);
+  line-height: 1.17;
+  color: $colMainText;
+}
+
+@mixin button {
+  min-width: 200px;
+  padding: 7px;
+  height: 50px;
+  color: $colBg;
+
+  background: linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+
+  @include standartTransition(.3);
+
+  &:hover {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+  }
+
+  &:active {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(104.34deg, #41522E -15.34%, #BE8022 145.95%);
+  }
+
+  &:disabled {
+    color: $colBorders;
+  }
+}
+
+// обертка для сворачивания блока по кнопке
+// https: //stackoverflow.com/questions/3508605/how-can-i-transition-height-0-to-height-auto-using-css
+
+@mixin verticalCollapseBlockAnimation {
+  .collapsible-wrapper {
+    overflow: hidden;
+  }
+
+  .collapsible {
+    transition: margin-bottom 0.6s cubic-bezier(0, 0, 0, 1);
+    margin-bottom: 0;
+    max-height: 1000000px;
+  }
+
+  .collapsible-wrapper.collapsed>.collapsible {
+    margin-bottom: -2000px;
+    transition: margin-bottom 0.6s cubic-bezier(1, 0, 1, 1),
+      visibility 0s 0.6s, max-height 0s 0.6s;
+    visibility: hidden;
+    max-height: 0;
+  }
+}
