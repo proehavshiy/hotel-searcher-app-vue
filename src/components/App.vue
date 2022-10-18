@@ -1,10 +1,10 @@
 <template>
-  <nav>
+  <!-- <nav>
     <router-link to="/">Login</router-link> |
     <router-link to="/hotels">Hotels</router-link> |
     <router-link to="/dfdfd">errorpage</router-link>
     <collapse-button :isActive="isActive" :handleClick="handleClick" />
-  </nav>
+  </nav> -->
   <router-view />
   <modal-window :isOpen="userLoginisLoading">
     <loading-spinner></loading-spinner>
