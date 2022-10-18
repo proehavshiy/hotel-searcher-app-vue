@@ -4,7 +4,6 @@
     <div class="content-wrapper">
       <div class="aside">
         <div class="search-form">
-          <!-- <HotelForm /> -->
           <HotelForm />
         </div>
         <!-- <FavouriteHotels /> -->
@@ -25,7 +24,7 @@
         </div>
         <div class="hotels collapsible-wrapper" :class="{'collapsed' : isCollapsed}">
           <div class="collapsible">
-            <!-- <SearchedHotels /> -->
+            <SearchedHotels />
           </div>
         </div>
       </div>
@@ -39,6 +38,7 @@ import HotelForm from '@/components/HotelForm.vue';
 import { mapActions, mapMutations, mapState } from 'vuex';
 import format from '@/utils/formatValues';
 import getWindowDimensions from '@/utils/getWindowDimensions';
+import SearchedHotels from '@/components/SearchedHotels.vue';
 
 function initIsCollapsed() {
   const { width } = getWindowDimensions();
@@ -47,7 +47,7 @@ function initIsCollapsed() {
 
 export default {
   name: 'hotels-view',
-  components: { Header, HotelForm },
+  components: { Header, HotelForm, SearchedHotels },
   data() {
     return {
       isCollapsed: initIsCollapsed(),
