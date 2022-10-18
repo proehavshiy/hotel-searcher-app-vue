@@ -28,6 +28,11 @@ export default {
   mounted() {
     this.isLiked = this.favourites.includes(this.currentId);
   },
+  watch: {
+    favourites(newVal) {
+      this.isLiked = newVal.includes(this.currentId);
+    }
+  },
   methods: {
     ...mapMutations({
       setFavourites: 'hotels/setFavourites'
@@ -38,7 +43,6 @@ export default {
       } else {
         this.setFavourites([...this.favourites, this.currentId])
       }
-      this.isLiked = !this.isLiked;
     },
   },
 }

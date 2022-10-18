@@ -8,7 +8,7 @@
     <ul class="hotels" v-if="fetched.hotels.length">
       <Card v-for="hotel in fetched.hotels" :key="hotel.hotelId" type="main" :data="{...hotel, ...fetched.info}" />
     </ul>
-    <DataPlaceholder v-else>Список отелей пуст</DataPlaceholder>
+    <data-placeholder v-else>Список отелей пуст</data-placeholder>
   </div>
 </template>
 

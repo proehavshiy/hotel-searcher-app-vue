@@ -6,7 +6,7 @@
         <div class="search-form">
           <HotelForm />
         </div>
-        <!-- <FavouriteHotels /> -->
+        <FavouriteHotels />
       </div>
       <div class="main-content">
         <collapse-button :isActive="isCollapsed" :handleClick="toggleCollapse" />
@@ -39,18 +39,15 @@ import { mapActions, mapMutations, mapState } from 'vuex';
 import format from '@/utils/formatValues';
 import getWindowDimensions from '@/utils/getWindowDimensions';
 import SearchedHotels from '@/components/SearchedHotels.vue';
-
-function initIsCollapsed() {
-  const { width } = getWindowDimensions();
-  return width < 992 ? true : false
-}
+import FavouriteHotels from '@/components/FavouriteHotels.vue';
 
 export default {
   name: 'hotels-view',
-  components: { Header, HotelForm, SearchedHotels },
+  // eslint-disable-next-line vue/no-unused-components
+  components: { Header, HotelForm, SearchedHotels, FavouriteHotels },
   data() {
     return {
-      isCollapsed: initIsCollapsed(),
+      isCollapsed: null,
     }
   },
   watch: {
@@ -59,6 +56,7 @@ export default {
     }
   },
   mounted() {
+    this.setIsCollapsed();
     // fetch data hotels & images when page mounted
     this.initFetchHotels(this.searchParams);
     this.initFetchImages();
@@ -80,6 +78,10 @@ export default {
     handleLogout() {
       this.setIsLogined(false);
       this.$router.push({ name: 'login' });
+    },
+    setIsCollapsed() {
+      const { width } = getWindowDimensions();
+      this.isCollapsed = width < 992 ? true : false;
     },
     toggleCollapse() {
       this.isCollapsed = !this.isCollapsed;

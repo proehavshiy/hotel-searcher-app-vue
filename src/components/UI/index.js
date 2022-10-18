@@ -9,7 +9,7 @@ import IconLike from './Icons/IconLike.vue';
 import IconLogout from './Icons/IconLogout.vue';
 import IconMax from './Icons/IconMax.vue';
 import IconMin from './Icons/IconMin.vue';
-
+import FilterPanel from './FilterPanel.vue';
 
 export default [
   CollapseButton,
@@ -23,4 +23,5 @@ export default [
   IconLogout,
   IconMax,
   IconMin,
+  FilterPanel,
 ];
