@@ -28,12 +28,12 @@ export default {
   },
   computed: {
     ...mapState({
-      isLogined: 'isLogined'
+      isLogined: 'user/isLogined'
     })
   },
   methods: {
     ...mapActions({
-      initFetchLogin: 'initFetchLogin',
+      initFetchLogin: 'user/initFetchLogin',
     }),
     handleLoginChange(value) {
       this.email = value;

@@ -1,8 +1,18 @@
 import { fetchLogin } from "@/api";
+import unpackLocalStorage from "@/utils/unpackLocalStorage";
+
+function initIsLoginedState() {
+  const [isExist, { isLogined }] = unpackLocalStorage('hotels-app');
+  if (isExist && isLogined) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 export const userModule = {
   state: () => ({
-    isLogined: false,
+    isLogined: initIsLoginedState(),
     fetchStatus: {
       error: null,
       isLoading: false,
@@ -37,4 +47,5 @@ export const userModule = {
       }
     }
   },
+  namespaced: true,
 }

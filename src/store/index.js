@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import VuexPersistence from 'vuex-persist';
+import { hotelsModule } from './modules/hotelsModule';
+import { searchParamsModule } from './modules/searchParamsModule';
 import { userModule } from './modules/userModule'
 
 const storeCache = new VuexPersistence({
@@ -9,18 +11,14 @@ const storeCache = new VuexPersistence({
   reducer: (state) => ({
     isLogined: state.user.isLogined,
   }),
-  filter: (mutation) => mutation.type === 'setIsLogined',
+  filter: (mutation) => mutation.type === 'user/setIsLogined',
 });
 
 export default createStore({
   plugins: [storeCache.plugin],
   modules: {
     user: userModule,
+    searchParams: searchParamsModule,
+    hotels: hotelsModule,
   }
 })
-
-
-// user: userReducer,
-//   searchParams: searchParamsReducer,
-//     hotels: hotelsReducer,
-//       duty: dutyReducer,

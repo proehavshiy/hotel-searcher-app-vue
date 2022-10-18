@@ -6,7 +6,7 @@
     <collapse-button :isActive="isActive" :handleClick="handleClick" />
   </nav> -->
   <router-view />
-  <modal-window :isOpen="userLoginisLoading">
+  <modal-window :isOpen="userLoginisLoading || hotelsIsLoading">
     <loading-spinner></loading-spinner>
   </modal-window>
   <modal-window :isOpen="userLoginError" type="error" @buttonClick="setUserLoginError(null)">
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import unpackLocalStorage from '@/utils/unpackLocalStorage';
 import { mapMutations, mapState } from 'vuex';
 
 export default {
@@ -32,15 +31,16 @@ export default {
       isLogined: (state) => state.user.isLogined,
       userLoginError: (state) => state.user.fetchStatus.error,
       userLoginisLoading: (state) => state.user.fetchStatus.isLoading,
+      hotelsIsLoading: (state) => state.hotels.fetchStatus.hotels.isLoading,
     }),
   },
   beforeMount() {
     // достать из localStorage данные при их наличии
-    const [isExist, { isLogined }] = unpackLocalStorage('hotels-app');
-    if (isExist) {
-      this.setIsLogined(isLogined);
-      this.$router.push({ name: 'hotels' });
-    }
+    // const [isExist, { isLogined }] = unpackLocalStorage('hotels-app');
+    // if (isExist) {
+    //   this.setIsLogined(isLogined);
+    //   this.$router.push({ name: 'hotels' });
+    // }
   },
   // mounted() {
   //   if (this.isLogined) {
