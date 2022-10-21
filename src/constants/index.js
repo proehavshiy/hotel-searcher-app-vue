@@ -24,4 +24,11 @@ const SLIDER_IMAGES = [
 
 const APP_LOCALE = ru;
 
-export { URL, SLIDER_IMAGES, APP_LOCALE };
+const LOGIN_FORM_MESSAGES = {
+  required: 'Поле обязательное',
+  email: 'Введите email',
+  password: 'Пароль - минимум 8 симв.',
+  cyrillic: 'Не должно быть кириллицы'
+}
+
+export { URL, SLIDER_IMAGES, APP_LOCALE, LOGIN_FORM_MESSAGES };

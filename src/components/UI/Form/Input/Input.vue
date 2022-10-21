@@ -1,6 +1,13 @@
 <template>
-  <InputDefault :type="type" :name="name" :id="id" :modelValue="value"
-    @update:model-value="this.$emit('updateInput', $event)" />
+  <InputDefault 
+  :type="type"
+  :name="name" 
+  :id="id" 
+  :modelValue="value"
+    @update:model-value="this.$emit('updateInput', $event)" 
+    @blur="onBlur"
+    :isError="isError"
+    />
 </template>
 
 // if type === 'date'
