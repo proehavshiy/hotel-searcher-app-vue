@@ -36,8 +36,6 @@ import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { disableCyrillicSymbols } from '@/utils/validateLoginForm';
 import { LOGIN_FORM_MESSAGES } from '@/constants';
 
-console.log('LOGIN_FORM_CONSTANTS:', LOGIN_FORM_MESSAGES);
-
 export default {
   name: 'login-form',
   components: {},
