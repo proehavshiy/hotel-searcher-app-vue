@@ -5,7 +5,10 @@ export const fetchHotels = async ({
 }) => {
   const dateObj = new Date(date);
   const checkInDate = dateObj.toISOString().split('T')[0];
-  const checkOudDate = new Date(dateObj.setDate(dateObj.getDate() + days)).toISOString().split('T')[0];
+  const checkOudDate = new Date(dateObj.setDate(dateObj.getDate() + Number(days))).toISOString().split('T')[0];
+
+console.log('checkInDate:', checkInDate);
+  console.log('checkOudDate:', checkOudDate);
 
   const adress = `${URL}?location=${city}&currency=rub&checkIn=${checkInDate}&checkOut=${checkOudDate}&limit=${limit}`;
   const response = await fetch(adress);
