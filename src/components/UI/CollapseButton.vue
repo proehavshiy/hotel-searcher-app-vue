@@ -8,7 +8,7 @@ export default {
   name: 'collapse-button',
   props: {
     isActive: {
-      type: Boolean,
+      type: [Boolean, null],
       required: true,
     },
     handleClick: {

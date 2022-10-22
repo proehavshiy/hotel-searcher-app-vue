@@ -1,6 +1,6 @@
 <template>
-  <input :type="type" :name="name" :id="id" class="input" :class="{'input_error': isError}" :value="value"
-    @input="this.$emit('updateInput', $event.target.value)" @blur="onBlur" />
+  <input :type="type" :name="name" :id="id" class="input" :class="{'input_error': error}" :value="value"
+    @input="onChangeInput" @blur="onBlur" />
 <Datepicker 
 v-if="type === 'date'"
 :modelValue="value"
@@ -29,6 +29,7 @@ import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss'
 export default {
   name: "app-input",
   components: { Datepicker },
+  emits: ["updateInput"],
   props: {
     type: {
       type: String,
@@ -43,19 +44,22 @@ export default {
       required: true,
     },
     value: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     onBlur: {
       type: Function,
     },
-    isError: {
-      type: Boolean,
+    error: {
+      type: String,
     }
   },
   methods: {
     onChangeDatePicker(e) {
       this.$emit('updateInput', e)
+    },
+    onChangeInput(e) {
+      this.$emit('updateInput', e.target.value)
     }
   }
 }

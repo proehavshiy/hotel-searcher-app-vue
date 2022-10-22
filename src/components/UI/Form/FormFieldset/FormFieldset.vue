@@ -4,7 +4,7 @@
       {{labelPlaceholder}}
     </label>
     <app-input :type="type" :name="name" :id="id" :value="value" @updateInput="this.$emit('updateInput', $event);"
-      :onBlur="onBlur" :isError="errorMessage" />
+      :onBlur="onBlur" :error="errorMessage" />
     <span class="input-error" :class="{ 'input-error_active' : isTouched && errorMessage }">
       {{errorMessage}}
     </span>
@@ -32,7 +32,7 @@ export default {
       required: true,
     },
     value: {
-      type: String,
+      type: [String, Number],
       required: true,
     },
     onBlur: {

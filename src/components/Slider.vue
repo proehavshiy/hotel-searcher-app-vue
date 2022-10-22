@@ -10,11 +10,11 @@
       1280: {
         slidesPerView: 3.5,
       },
-      1024: {
+      992: {
         slidesPerView: 3,
       },
       480: {
-        slidesPerView: 3.5,
+        slidesPerView: 2.5,
       },
       320: {
         slidesPerView: 1.5,

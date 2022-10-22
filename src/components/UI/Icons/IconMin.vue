@@ -23,9 +23,4 @@ export default {
     fill: $colAccent;
   }
 }
-// @mixin activeButton {
-//   path {
-//     fill: $colAccent;
-//   }
-// }
 </style>
