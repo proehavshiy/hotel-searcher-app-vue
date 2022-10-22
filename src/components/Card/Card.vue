@@ -114,6 +114,7 @@ export default {
   line-height: 1.57;
   letter-spacing: -0.408px;
   color: $colSecondaryText;
+  text-align: left;
 
   @media (max-width: $br3) {
     flex-direction: column;

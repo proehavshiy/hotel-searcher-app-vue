@@ -13,6 +13,7 @@
     "@vuepic/vue-datepicker": "^3.5.2",
     "core-js": "^3.8.3",
     "date-fns": "^2.29.3",
+    "swiper": "^8.4.4",
     "uniqid": "^5.4.0",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",

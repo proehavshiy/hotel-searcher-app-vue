@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="main-content__slider">
-          <!-- <Slider /> -->
+          <Slider :images="images" :isLoading="imagesFetchStatus.isLoading" :error="imagesFetchStatus.error"/>
         </div>
         <div class="hotels collapsible-wrapper" :class="{'collapsed' : isCollapsed}">
           <div class="collapsible">
@@ -40,11 +40,12 @@ import format from '@/utils/formatValues';
 import getWindowDimensions from '@/utils/getWindowDimensions';
 import SearchedHotels from '@/components/SearchedHotels.vue';
 import FavouriteHotels from '@/components/FavouriteHotels.vue';
+import Slider from '@/components/Slider.vue';
 
 export default {
   name: 'hotels-view',
   // eslint-disable-next-line vue/no-unused-components
-  components: { Header, HotelForm, SearchedHotels, FavouriteHotels },
+  components: { Header, HotelForm, SearchedHotels, FavouriteHotels, Slider },
   data() {
     return {
       isCollapsed: null,
@@ -56,6 +57,7 @@ export default {
     }
   },
   mounted() {
+    console.log('images1:', this.images);
     this.setIsCollapsed();
     // fetch data hotels & images when page mounted
     this.initFetchHotels(this.searchParams);
@@ -65,6 +67,8 @@ export default {
     ...mapState({
       searchParams: (state) => state.searchParams,
       fetchInfo: (state) => state.hotels.fetched.info,
+      images: (state) => state.hotels.images,
+      imagesFetchStatus: (state) => state.hotels.fetchStatus.images,
     })
   },
   methods: {

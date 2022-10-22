@@ -50,6 +50,7 @@ export default {
     font-size: 17px;
     letter-spacing: -0.408px;
     color: $colMainText;
+    text-align: left;
 
     &>span {
       margin: 0 5px;

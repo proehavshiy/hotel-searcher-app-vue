@@ -1,15 +1,15 @@
 <template>
-  <div class="filter" :class="{ 'filter_active': filterStatus.name === name }" @click="handleClickFilterPanel"
-    @keydown="handleKeyDownFilterPanel" role='button' tabIndex={0}>
+  <div class="filter" :class="{ 'filter_active': isFilterActive }" @click="handleClickFilterPanel"
+    @keydown.enter="handleClickFilterPanel" role='button' tabIndex={0}>
     <span>{{name}}</span>
     <div class="filter__buttons-container">
       <span class="filter__button filter__button_max"
-        :class="{ 'filter__button_active': filterStatus.name === name && filterStatus.filterParam === 'max' }">
-        <icon-max></icon-max>
-      </span>
-      <span class="filter__button filter__button_min"
-        :class="{ 'filter__button_active': filterStatus.name === name && filterStatus.filterParam === 'min' }">
-        <icon-min></icon-min>
+        :class="{ 'filter__button_active': isMaxActive }">
+        <icon-max :isActive="isMaxActive" />
+        </span>
+        <span class="filter__button filter__button_min"
+        :class="{ 'filter__button_active': isMinActive }">
+        <icon-min :isActive="isMinActive"/>
       </span>
     </div>
   </div>
@@ -28,6 +28,17 @@ export default {
       required: true,
     },
   },
+  computed: {
+    isFilterActive() {
+      return this.filterStatus.name === this.name;
+    },
+    isMaxActive() {
+      return this.filterStatus.name === this.name && this.filterStatus.filterParam === 'max';
+    },
+    isMinActive() {
+      return this.filterStatus.name === this.name && this.filterStatus.filterParam === 'min';
+    }
+  },
   methods: {
     changeFilterStatus() {
       if (this.filterStatus.filterParam === 'min') {
@@ -39,11 +50,6 @@ export default {
     handleClickFilterPanel() {
       return this.$emit('updateFilterStatus', this.changeFilterStatus())
     },
-    handleKeyDownFilterPanel(evt) {
-      if (evt.code === 'Enter') {
-        return this.$emit('updateFilterStatus', this.changeFilterStatus())
-      }
-    }
   }
 }
 </script>
@@ -52,12 +58,6 @@ export default {
 @mixin activeFilter {
   color: $colAccent;
   border: 1px solid $colAccent;
-}
-
-@mixin activeButton {
-  path {
-    fill: $colAccent;
-  }
 }
 
 .filter {
@@ -103,10 +103,6 @@ export default {
   align-items: center;
   background: transparent;
   @include standartTransition(.5);
-
-  &_active {
-    @include activeButton;
-  }
 
   &_max {
     padding: 5px 5px 0 5px;

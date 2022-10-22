@@ -49,6 +49,9 @@ export default {
     console.log('fetched:', this.fetched);
   },
   methods: {
+    toggleCollapse() {
+      this.isCollapsed = !this.isCollapsed;
+    },
     setIsCollapsed() {
       const { width } = getWindowDimensions();
       this.isCollapsed = width < 992 ? true : false;
