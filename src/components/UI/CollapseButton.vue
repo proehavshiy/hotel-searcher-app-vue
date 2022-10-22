@@ -1,5 +1,7 @@
 <template>
-  <button class="collapse-button" :class="{'collapse-button_collapsed': isActive}" type='button' aria-label='collapse'
+  <button class="collapse-button" :class="{'collapse-button_collapsed': isActive}" 
+    type='button' 
+    aria-label='collapse'
     @click="handleClick"></button>
 </template>
 

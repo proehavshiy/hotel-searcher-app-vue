@@ -1,24 +1,32 @@
 <template>
-  <input :type="type" :name="name" :id="id" class="input" :class="{'input_error': error}" :value="value"
-    @input="onChangeInput" @blur="onBlur" />
+  <input
+    class="input" 
+    :class="{'input_error': error}" 
+    :type="type" 
+    :name="name" 
+    :id="id" 
+    :value="value"
+    @input="onChangeInput" 
+    @blur="onBlur" 
+  />
 <Datepicker 
-v-if="type === 'date'"
-:modelValue="value"
-@update:modelValue="onChangeDatePicker"
-locale="ru" 
-cancelText="Отменить" 
-selectText="Выбрать" 
-showNowButton 
-nowButtonLabel="Сегодня" 
-:minDate="new Date()" 
-:enableTimePicker="false"
-:monthChangeOnScroll="false"
-inputClassName="input-hide"
+  v-if="type === 'date'"
+  :modelValue="value"
+  @update:modelValue="onChangeDatePicker"
+  locale="ru" 
+  cancelText="Отменить" 
+  selectText="Выбрать" 
+  showNowButton 
+  nowButtonLabel="Сегодня" 
+  :minDate="new Date()" 
+  :enableTimePicker="false"
+  :monthChangeOnScroll="false"
+  inputClassName="input-hide"
 >
-<template #input-icon>
-  <button class="datepicker-icon" type="button">
-  </button>
-</template>
+  <template #input-icon>
+    <button class="datepicker-icon" type="button">
+    </button>
+  </template>
 </Datepicker>
 </template>
 

@@ -2,7 +2,6 @@ import store from '@/store'
 
 export default function routeProtectionRules(to, from, next) {
   const isLogined = store.state.user.isLogined;
-  console.log('store isLogined:', isLogined);
   // if user is not logined, redirect to login
   if (to.matched.some((record) => record.meta.requireAuth)) {
     isLogined

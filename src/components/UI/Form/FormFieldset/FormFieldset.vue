@@ -3,8 +3,15 @@
     <label :for="id" class="label" :class="{ 'label_error': isTouched && errorMessage }">
       {{labelPlaceholder}}
     </label>
-    <app-input :type="type" :name="name" :id="id" :value="value" @updateInput="this.$emit('updateInput', $event);"
-      :onBlur="onBlur" :error="errorMessage" />
+    <app-input 
+      :type="type" 
+      :name="name" 
+      :id="id"
+      :value="value" 
+      @updateInput="this.$emit('updateInput', $event);"
+      :onBlur="onBlur" 
+      :error="errorMessage" 
+    />
     <span class="input-error" :class="{ 'input-error_active' : isTouched && errorMessage }">
       {{errorMessage}}
     </span>
@@ -45,8 +52,6 @@ export default {
       type: String,
     },
   },
-  methods: {
-  }
 }
 </script>
 

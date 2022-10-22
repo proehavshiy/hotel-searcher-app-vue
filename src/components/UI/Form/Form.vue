@@ -1,10 +1,18 @@
 <template>
-  <form class="form" @submit.prevent="onSubmit" novalidate>
-    <h1 class="heading" v-if="formHeading">{{formHeading}}</h1>
+  <form class="form" 
+    @submit.prevent="onSubmit" 
+    novalidate
+  >
+    <h1 class="heading" v-if="formHeading">
+      {{formHeading}}
+    </h1>
     <div class="fields-block">
       <slot></slot>
     </div>
-    <button class="submit" type="submit" :disabled="isSubmitDisabled">
+    <button class="submit" 
+      type="submit" 
+      :disabled="isSubmitDisabled"
+    >
       {{submitCTA}}
     </button>
   </form>

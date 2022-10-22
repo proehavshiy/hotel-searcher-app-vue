@@ -13,9 +13,6 @@
 <script>
 export default {
   name: 'app-header',
-  components: {},
-  props: {},
-  computed: {},
   methods: {
     handleLogout() {
       this.$emit('logout');

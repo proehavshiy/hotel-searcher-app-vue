@@ -5,12 +5,23 @@
     <div class="content-wrapper collapsible-wrapper" :class="{'collapsed' : isCollapsed}">
       <div class="content collapsible">
         <div class="filer-bar">
-          <filter-panel name="Рейтинг" :filterStatus="filterState" @updateFilterStatus="handleFilterPanel" />
-          <filter-panel name="Цена" :filterStatus="filterState" @updateFilterStatus="handleFilterPanel" />
+          <filter-panel 
+            name="Рейтинг" 
+            :filterStatus="filterState" 
+            @updateFilterStatus="handleFilterPanel" 
+          />
+          <filter-panel 
+            name="Цена" 
+            :filterStatus="filterState" 
+            @updateFilterStatus="handleFilterPanel" 
+          />
         </div>
         <ul class="hotels" v-if="sortedFavouriteHotels.length">
-          <Card v-for="hotel in sortedFavouriteHotels" :key="hotel.hotelId" type="favourite"
-            :data="{...hotel, ...fetched.info}" />
+          <Card v-for="hotel in sortedFavouriteHotels" 
+            :key="hotel.hotelId" 
+            type="favourite"
+            :data="{...hotel, ...fetched.info}" 
+          />
         </ul>
         <data-placeholder v-else>Список отелей пуст</data-placeholder>
       </div>
@@ -45,8 +56,6 @@ export default {
   },
   mounted() {
     this.setIsCollapsed();
-    console.log('favourites:', this.favourites);
-    console.log('fetched:', this.fetched);
   },
   methods: {
     toggleCollapse() {

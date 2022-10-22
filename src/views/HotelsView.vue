@@ -35,29 +35,22 @@
 <script>
 import Header from '@/components/Header.vue';
 import HotelForm from '@/components/HotelForm.vue';
-import { mapActions, mapMutations, mapState } from 'vuex';
-import format from '@/utils/formatValues';
-import getWindowDimensions from '@/utils/getWindowDimensions';
 import SearchedHotels from '@/components/SearchedHotels.vue';
 import FavouriteHotels from '@/components/FavouriteHotels.vue';
 import Slider from '@/components/Slider.vue';
+import { mapActions, mapMutations, mapState } from 'vuex';
+import format from '@/utils/formatValues';
+import getWindowDimensions from '@/utils/getWindowDimensions';
 
 export default {
   name: 'hotels-view',
-  // eslint-disable-next-line vue/no-unused-components
   components: { Header, HotelForm, SearchedHotels, FavouriteHotels, Slider },
   data() {
     return {
       isCollapsed: null,
     }
   },
-  watch: {
-    isCollapsed(newVal) {
-      console.log('isCollapsed watch:', newVal);
-    }
-  },
   mounted() {
-    console.log('images1:', this.images);
     this.setIsCollapsed();
     // fetch data hotels & images when page mounted
     this.initFetchHotels(this.searchParams);

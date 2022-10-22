@@ -13,22 +13,18 @@
 </template>
 
 <script>
-import getRUDeclination from "@/utils/wordDeclinations"
-import { mapState } from "vuex";
 import Card from "@/components/Card/Card.vue";
+import { mapState } from "vuex";
+import getRUDeclination from "@/utils/wordDeclinations"
+
 export default {
   name: 'searched-hotels',
   components: { Card },
-  props: {},
   computed: {
     ...mapState({
       favourites: (state) => state.hotels.favourites,
       fetched: (state) => state.hotels.fetched,
     })
-  },
-  mounted() {
-    console.log('favourites:', this.favourites);
-    console.log('fetched:', this.fetched);
   },
   methods: {
     getRUDeclination(...args) {
@@ -63,7 +59,6 @@ export default {
     max-height: 500px;
   }
 }
-
 .hotels {
   padding-right: 14px;
   max-height: calc(100% - 40px);

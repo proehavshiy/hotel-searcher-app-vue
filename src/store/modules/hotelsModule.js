@@ -64,7 +64,6 @@ export const hotelsModule = {
   },
   actions: {
     async initFetchHotels({ commit }, { city, date, days }) {
-      console.log('hotels payload:', { city, date, days });
       try {
         commit('setIsLoading', { param: 'hotels', value: true });
         const hotels = await fetchHotels({ city, date, days });
@@ -78,7 +77,6 @@ export const hotelsModule = {
       }
     },
     async initFetchImages({ commit }, payload) {
-      console.log('img payload:', payload);
       try {
         commit('setIsLoading', { param: 'images', value: true });
 

@@ -1,15 +1,16 @@
 <template>
-  <div class="filter" :class="{ 'filter_active': isFilterActive }" @click="handleClickFilterPanel"
-    @keydown.enter="handleClickFilterPanel" role='button' tabIndex={0}>
+  <div class="filter" :class="{ 'filter_active': isFilterActive }" 
+    @click="handleClickFilterPanel"
+    @keydown.enter="handleClickFilterPanel" 
+    role='button' 
+    tabIndex={0}>
     <span>{{name}}</span>
     <div class="filter__buttons-container">
-      <span class="filter__button filter__button_max"
-        :class="{ 'filter__button_active': isMaxActive }">
-        <icon-max :isActive="isMaxActive" />
+      <span class="filter__button filter__button_max" :class="{ 'filter__button_active': isMaxActive }">
+          <icon-max :isActive="isMaxActive" />
         </span>
-        <span class="filter__button filter__button_min"
-        :class="{ 'filter__button_active': isMinActive }">
-        <icon-min :isActive="isMinActive"/>
+        <span class="filter__button filter__button_min" :class="{ 'filter__button_active': isMinActive }">
+          <icon-min :isActive="isMinActive"/>
       </span>
     </div>
   </div>
